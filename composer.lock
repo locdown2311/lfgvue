@@ -4,8 +4,49 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5bb5f07b968e5839f5f7864c5a1ea471",
+    "content-hash": "0c6c1e3fdc1327cad9f475c93933b5af",
     "packages": [
+        {
+            "name": "ahmedsaoud31/laravel-permission-to-vuejs",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ahmedsaoud31/laravel-permission-to-vuejs.git",
+                "reference": "782d6b41df411a870a6d47c080d87b2513a4c2f4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ahmedsaoud31/laravel-permission-to-vuejs/zipball/782d6b41df411a870a6d47c080d87b2513a4c2f4",
+                "reference": "782d6b41df411a870a6d47c080d87b2513a4c2f4",
+                "shasum": ""
+            },
+            "require": {
+                "spatie/laravel-permission": ">=2.0"
+            },
+            "default-branch": true,
+            "type": "plugin",
+            "autoload": {
+                "psr-4": {
+                    "LaravelAndVueJS\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ahmed Abeoelsaoud",
+                    "email": "ahmedsaoud31@gmail.com"
+                }
+            ],
+            "description": "Laravel Permission Package To Use it in VueJs",
+            "support": {
+                "issues": "https://github.com/ahmedsaoud31/laravel-permission-to-vuejs/issues",
+                "source": "https://github.com/ahmedsaoud31/laravel-permission-to-vuejs/tree/master"
+            },
+            "time": "2021-06-14T10:35:59+00:00"
+        },
         {
             "name": "asm89/stack-cors",
             "version": "v2.0.3",
@@ -3379,6 +3420,88 @@
                 }
             ],
             "time": "2021-09-25T23:10:38+00:00"
+        },
+        {
+            "name": "spatie/laravel-permission",
+            "version": "5.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-permission.git",
+                "reference": "58d5eb6c7b0eafa8bdf0a93d1ca5c214a05344cb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/58d5eb6c7b0eafa8bdf0a93d1ca5c214a05344cb",
+                "reference": "58d5eb6c7b0eafa8bdf0a93d1ca5c214a05344cb",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/auth": "^6.0|^7.0|^8.0",
+                "illuminate/container": "^6.0|^7.0|^8.0",
+                "illuminate/contracts": "^6.0|^7.0|^8.0",
+                "illuminate/database": "^6.0|^7.0|^8.0",
+                "php": "^7.2.5|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^4.0|^5.0|^6.0",
+                "phpunit/phpunit": "^8.0|^9.0",
+                "predis/predis": "^1.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\Permission\\PermissionServiceProvider"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-main": "5.x-dev",
+                    "dev-master": "5.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Permission\\": "src"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Permission handling for Laravel 6.0 and up",
+            "homepage": "https://github.com/spatie/laravel-permission",
+            "keywords": [
+                "acl",
+                "laravel",
+                "permission",
+                "permissions",
+                "rbac",
+                "roles",
+                "security",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/laravel-permission/issues",
+                "source": "https://github.com/spatie/laravel-permission/tree/5.1.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-09-01T20:02:17+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -8543,7 +8666,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "ahmedsaoud31/laravel-permission-to-vuejs": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
