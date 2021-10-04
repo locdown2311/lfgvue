@@ -3,7 +3,7 @@
 
     <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
         <div v-if="canLogin" class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-            <Link v-if="$page.props.user" :href="route('dashboard')" class="text-sm text-gray-700 underline">
+            <Link v-if="$page.props.user" :href="route('activity.index')" class="text-sm text-gray-700 underline">
                 Dashboard
             </Link>
 
@@ -11,10 +11,10 @@
                 <!-- Responsive Menu -->
                 <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
-                        <jet-responsive-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
+                        <jet-responsive-nav-link :href="route('register')" :active="route().current('register')">
                             Login
                         </jet-responsive-nav-link>
-                        <jet-responsive-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
+                        <jet-responsive-nav-link :href="route('login')" :active="route().current('login')">
                             Register
                         </jet-responsive-nav-link>
                     </div>
