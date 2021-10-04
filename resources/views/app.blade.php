@@ -11,16 +11,11 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 
         <!-- Scripts -->
         @routes
         <script src="{{ mix('js/app.js') }}" defer></script>
-        <script type="text/javascript">
-            window.Laravel = {
-                csrfToken: "{{ csrf_token() }}",
-                jsPermissions: {!! auth()->check()?auth()->user()->jsPermissions():null !!}
-            }
-        </script>
     </head>
     <body class="font-sans antialiased">
         @inertia

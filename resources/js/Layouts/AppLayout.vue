@@ -12,14 +12,14 @@
                         <div class="flex">
                             <!-- Logo -->
                             <div class="flex-shrink-0 flex items-center">
-                                <Link :href="route('dashboard')">
+                                <Link :href="route('activity.index')">
                                     <jet-application-mark class="block h-9 w-auto" />
                                 </Link>
                             </div>
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
+                                <jet-nav-link :href="route('activity.index')" :active="route().current('activity.index')">
                                     Dashboard
                                 </jet-nav-link>
                             </div>
@@ -142,7 +142,7 @@
                 <!-- Responsive Navigation Menu -->
                 <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
-                        <jet-responsive-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
+                        <jet-responsive-nav-link :href="route('activity.index')" :active="route().current('activity.index')">
                             Dashboard
                         </jet-responsive-nav-link>
                     </div>
@@ -228,6 +228,9 @@
                 <slot></slot>
             </main>
         </div>
+        <footer>
+            <FooterInfo/>
+        </footer>
     </div>
 </template>
 
@@ -240,6 +243,7 @@
     import JetNavLink from '@/Jetstream/NavLink.vue'
     import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink.vue'
     import { Head, Link } from '@inertiajs/inertia-vue3';
+    import FooterInfo from "../Components/FooterInfo";
 
     export default defineComponent({
         props: {
@@ -247,6 +251,7 @@
         },
 
         components: {
+            FooterInfo,
             Head,
             JetApplicationMark,
             JetBanner,

@@ -7,9 +7,19 @@
         </template>
 
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <welcome />
+                    <ContainerCard
+                    icone="fas fa-users">
+                        <template #titulo>
+                            Precisando de companhia para jogar?
+                        </template>
+                        <template #corpo>
+                            <p>Comece procurando uma atividade existente abaixo.</p>
+                            <p>Caso não encontre, crie uma.</p>
+                        </template>
+
+                    </ContainerCard>
                 </div>
             </div>
         </div>
@@ -20,9 +30,11 @@
     import { defineComponent } from 'vue'
     import AppLayout from '@/Layouts/AppLayout.vue'
     import Welcome from '@/Jetstream/Welcome.vue'
+    import ContainerCard from "../Components/ContainerCard";
 
     export default defineComponent({
         components: {
+            ContainerCard,
             AppLayout,
             Welcome,
         },

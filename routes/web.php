@@ -24,6 +24,7 @@ Route::get('/', function () {
     ]);
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+Route::middleware(['auth:sanctum'])->group(function (){
+    Route::get('/dashboard',[\App\Http\Controllers\ActivityController::class,'index'])->name('activity.index');
+});
     return Inertia::render('Dashboard');
-})->name('dashboard');

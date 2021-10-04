@@ -3,11 +3,8 @@ require('./bootstrap');
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
-import LaravelPermissionToVueJS from 'laravel-permission-to-vuejs';
-
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
-appName.use(LaravelPermissionToVueJS);
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
