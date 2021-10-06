@@ -106,7 +106,7 @@ export default {
             observacao: props.atividade.observacao,
         });
         const updatePost = () => {
-            form.put(route("activity.edit", props.atividade.id), {
+            form.put(route("activity.update", props.atividade), {
                 preserveScroll: true,
             });
         };

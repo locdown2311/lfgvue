@@ -28,7 +28,7 @@ class StoreActivityRequest extends FormRequest
             'categoria_id' => 'required | numeric',
             'horario_atv' => 'required | date',
             'qtd_jogadores' => 'required | numeric',
-            'observacao' => 'max:100 | string'
+            'observacao' => 'max:100'
         ];
     }
 }

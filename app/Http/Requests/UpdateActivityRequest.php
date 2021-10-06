@@ -14,7 +14,7 @@ class UpdateActivityRequest extends FormRequest
      */
     public function authorize()
     {
-        $activityRoute = $this->route()->parameter('id');
+        $activityRoute = $this->route()->parameter('activity');
         return (\Auth::id() == $activityRoute->user_id); // or whatever you've called it
     }
 

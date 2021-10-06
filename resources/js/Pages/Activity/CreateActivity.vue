@@ -22,7 +22,7 @@
             <div class="modal modal-open">
                 <div class="modal-box">
                     <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                        <form @submit.prevent="form.post('/activity/create/submit')">
+                        <form @submit.prevent="form.post('/activity/')">
                             <div class="mb-4">
                                 <label class="block text-gray-700 text-sm font-bold mb-2">Atividade desejada</label>
                                 <select id="categoriaId" v-model="form.categoria_id" required>

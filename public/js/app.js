@@ -20405,7 +20405,7 @@ __webpack_require__.r(__webpack_exports__);
     });
 
     var updatePost = function updatePost() {
-      form.put(route("activity.edit", props.atividade.id), {
+      form.put(route("activity.update", props.atividade), {
         preserveScroll: true
       });
     };
@@ -24376,7 +24376,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "my-4 inline-flex justify-center w-full btn btn-outline btn-primary"
       }, " Iniciar atividade ")])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
         onSubmit: _cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-          return $setup.form.post('/activity/create/submit');
+          return $setup.form.post('/activity/');
         }, ["prevent"]))
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
         id: "categoriaId",

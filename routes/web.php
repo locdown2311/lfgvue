@@ -24,10 +24,12 @@ Route::get('/', function () {
     ]);
 });
 
+    //TODO Criar rota resource para activity
+
 Route::middleware(['auth:sanctum'])->group(function (){
     Route::get('/dashboard',[\App\Http\Controllers\ActivityController::class,'index'])->name('activity.index');
+    Route::resource('activity',\App\Http\Controllers\ActivityController::class)->except(['show']);
     Route::get('/activity/view/{slug}',[\App\Http\Controllers\ActivityViewController::class,'show'])->name('activity.show');
-    Route::get('/activity/create',[\App\Http\Controllers\ActivityController::class,'create'])->name('activity.create');
     Route::post('/activity/join/{id}',[\App\Http\Controllers\ActivityViewController::class,'joinActivity'])->name('activity.join');
     Route::post('/activity/quit/{id}',[\App\Http\Controllers\ActivityViewController::class,'quitActivity'])->name('activity.quit');
 });
