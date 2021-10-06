@@ -7,12 +7,16 @@ use App\Http\Requests\UpdateActivityRequest;
 use App\Models\Activity;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 
 class ActivityController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Inertia\Response
+     */
     public function index()
     {
         $dados = Activity::with('category', 'user')
@@ -37,6 +41,11 @@ class ActivityController extends Controller
         ]);
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Inertia\Response
+     */
     public function create()
     {
         $categorias = Category::all()->map(function ($category) {
@@ -53,25 +62,56 @@ class ActivityController extends Controller
         return Inertia::render('Activity/CreateActivity', [
             'categorias' => $categorias,
             'atividades' => $atividades_usu
-
         ]);
     }
 
-    public function edit(Activity $id)
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(StoreActivityRequest $request)
     {
+        $valido = $request->validated();
+        $dados = new Activity();
+        $dados->user_id = \Auth::id();
+        $dados->horario = $valido['horario_atv'];
+        $dados->slug = Str::random(8) . $valido['qtd_jogadores'];
+        $dados->qtd_jogadores = $valido['qtd_jogadores'];
+        $dados->observacao = $valido['observacao'];
+        $dados->category()->associate($valido['categoria_id']);
+        $dados->save();
+        session()->flash('message', 'Tarefa cadastrada.');
+        return redirect()->route('activity.index');
+    }
 
-        $descricao = $id->category()->get();
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Activity  $activity
+     * @return \Inertia\Response
+     */
+    public function edit(Activity $activity)
+    {
+        $descricao = $activity->category()->get();
         return Inertia::render('Activity/EditActivity', [
-            'atividade' => $id,
+            'atividade' => $activity,
             'descricao' => $descricao[0]->descricao
         ]);
     }
 
-    public function update(UpdateActivityRequest $request, Activity $id)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Activity  $activity
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(UpdateActivityRequest $request, Activity $activity)
     {
-
         $valido = $request->validated();
-        $atividade = $id;
+        $atividade = $activity;
         $atividade->horario = $valido['horario'];
         $atividade->qtd_jogadores = $valido['qtd_jogadores'];
         $atividade->observacao = $valido['observacao'];
@@ -79,27 +119,16 @@ class ActivityController extends Controller
 
         session()->flash('message', 'Tarefa editada.');
         return redirect()->route('activity.index');
-
     }
 
-    public function store(StoreActivityRequest $request)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Activity  $activity
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Activity $activity)
     {
-        $valido = $request->validated();
-        $dados = new Activity();
-        $dados->user_id = \Auth::id();
-        $dados->horario = $valido['horario_atv'];
-        $dados->slug = $random = Str::random(8) . $valido['qtd_jogadores'];
-        $dados->qtd_jogadores = $valido['qtd_jogadores'];
-        $dados->observacao = $valido['observacao'];
-        $dados->category()->associate($valido['categoria_id']);
-        $dados->save();
-        session()->flash('message', 'Tarefa cadastrada.');
-        return Redirect::route('activity.index');
-    }
-
-    public function delete($id)
-    {
-        Activity::findOrFail($id)->delete();
-        session()->flash('message', 'Tarefa concluida com sucesso.');
+        //
     }
 }
