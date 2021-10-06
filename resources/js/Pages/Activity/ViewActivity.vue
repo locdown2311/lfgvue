@@ -68,7 +68,7 @@
                                         <input type="hidden" v-model="dados.id">
                                         <button v-show="!(participando)" @click="save(dados)" class="btn btn-success">Participar</button>
                                         <button v-show="participando" @click="quit(dados)" class="btn btn-error">Sair</button>
-                                        <a :href="route('activity.index')" class="btn btn-outline">Fechar aba</a>
+                                        <Link :href="route('activity.index')" class="btn btn-outline">Fechar aba</Link>
                                     </div>
                                 </dd>
                             </div>
@@ -96,10 +96,11 @@
 <script>
 import AppLayout from "../../Layouts/AppLayout";
 import FakeModal from "../../Components/FakeModal";
+import {Link} from '@inertiajs/inertia-vue3';
 
 export default {
     name: "ViewActivity",
-    components: {FakeModal, AppLayout},
+    components: {FakeModal, AppLayout, Link},
     data(){
         return{
             dados:{

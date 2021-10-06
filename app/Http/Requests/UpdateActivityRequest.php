@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Activity;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateActivityRequest extends FormRequest
@@ -13,9 +14,8 @@ class UpdateActivityRequest extends FormRequest
      */
     public function authorize()
     {
-        $activity = $this->route()->parameter('id'); // whatever the parameter is called
-        return (\Auth::id() == $activity->user_id); // or whatever you've called it
-
+        $activityRoute = $this->route()->parameter('id');
+        return (\Auth::id() == $activityRoute->user_id); // or whatever you've called it
     }
 
     /**
@@ -26,9 +26,8 @@ class UpdateActivityRequest extends FormRequest
     public function rules()
     {
         return [
-            'categoria_id' => 'required | numeric',
-            'horario_atv' => 'required | date',
-            'qtd_jogadores' => 'required | numeric',
+            'horario' => 'required',
+            'qtd_jogadores' => 'required',
             'observacao' => 'max:100 | string'
         ];
     }

@@ -27,7 +27,9 @@
                 <!--<p><i class="fas fa-paperclip"></i> <input type="text" class="input input-bordered w-full" readonly :value="route('view.activity',['slug' => conferir])"></p>
             !--></div>
             <div class="justify-end card-actions">
-                <a class="btn btn-outline btn-accent" :href="route('activity.show', { slug: this.slug })"><span><i class="fas fa-info-circle"></i> Mais informações</span> </a>
+                <Link class="btn btn-outline btn-accent" :href="route('activity.show', { slug: this.slug })">
+                    <span><i class="fas fa-info-circle"></i> Mais informações</span>
+                </Link>
             </div>
         </div>
     </div>
@@ -35,8 +37,12 @@
 </template>
 
 <script>
+import {Link} from '@inertiajs/inertia-vue3';
 export default {
     name: "CardActivity",
+    components:{
+        Link
+    },
     props:['tipo','id','slug'],
     computed:{
         getImage(){

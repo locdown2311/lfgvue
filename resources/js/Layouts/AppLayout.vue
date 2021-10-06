@@ -22,6 +22,9 @@
                                 <jet-nav-link :href="route('activity.index')" :active="route().current('activity.index')">
                                     Dashboard
                                 </jet-nav-link>
+                                <jet-nav-link :href="route('activity.create')" :active="route().current('activity.create')">
+                                    My Activities
+                                </jet-nav-link>
                             </div>
                         </div>
 
@@ -144,6 +147,9 @@
                     <div class="pt-2 pb-3 space-y-1">
                         <jet-responsive-nav-link :href="route('activity.index')" :active="route().current('activity.index')">
                             Dashboard
+                        </jet-responsive-nav-link>
+                        <jet-responsive-nav-link :href="route('activity.create')" :active="route().current('activity.create')">
+                            My Activities
                         </jet-responsive-nav-link>
                     </div>
 

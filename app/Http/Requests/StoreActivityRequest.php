@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class StoreActivityRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class StoreActivityRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Auth::check();
     }
 
     /**
@@ -24,10 +25,10 @@ class StoreActivityRequest extends FormRequest
     public function rules()
     {
         return [
-            'categoria_id' => 'required',
-            'horario_atv' => 'required',
-            'qtd_jogadores' => 'required',
-            'observacao' => 'max:100'
+            'categoria_id' => 'required | numeric',
+            'horario_atv' => 'required | date',
+            'qtd_jogadores' => 'required | numeric',
+            'observacao' => 'max:100 | string'
         ];
     }
 }

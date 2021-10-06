@@ -19,12 +19,8 @@
                             <p>Caso não encontre, crie uma.</p>
                         </template>
                     </ContainerCard>
-                    <div v-if="$page.props.flash.message">
-                        <InfoAlert>
-                            <template #corpo>
-                                {{ $page.props.flash.message }}
-                            </template>
-                        </InfoAlert>
+                    <div>
+                        <InfoAlert/>
                     </div>
 
                 </div>

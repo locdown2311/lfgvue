@@ -1,20 +1,21 @@
 <template>
-    <div class="alert alert-info">
+    <div class="alert alert-info" v-if="errors && Object.keys(errors).length > 0 || $page.props.flash.message ">
         <div class="flex-1">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-6 h-6 mx-2 stroke-current">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-            <label><slot name="corpo"></slot></label>
+            <ul class="alert alert-error" v-if="errors && Object.keys(errors).length > 0">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-6 h-6 mx-2 stroke-current">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <li v-for="error in errors">{{error}}</li>
+            </ul>
+            <label v-if="$page.props.flash.message" class="justify-center">{{$page.props.flash.message}}</label>
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    name: "InfoAlert"
+    name: "InfoAlert",
+    props:['errors']
 }
 </script>
 
-<style scoped>
-
-</style>

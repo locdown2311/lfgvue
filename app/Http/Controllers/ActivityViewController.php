@@ -34,9 +34,8 @@ class ActivityViewController extends Controller
         $atividade = $atividade[0];
         $this->participantes = $this->loadParticipantes($atividade['id']);
         $nParticipantes = $this->countPlayers($atividade['id']);
-        //dd($atividade);
 
-        return Inertia::render('Pages/Activity/ViewActivity',[
+        return Inertia::render('Activity/ViewActivity',[
             'dados' => $atividade,
             'nParticipantes' => $nParticipantes,
             'participando' => $this->checkIfExists($usuarioAtivo,$atividade['id']),
@@ -80,7 +79,7 @@ class ActivityViewController extends Controller
     }
     public function loadParticipantes($id){
         $this->busca = $id;
-        $this->participantes = User::whereHas('activities', function ($query) {
+        return User::whereHas('activities', function ($query) {
             return $query->where('activities.id', '=', $this->busca);
         })->get();
 
