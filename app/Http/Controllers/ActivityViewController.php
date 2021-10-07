@@ -10,7 +10,7 @@ class ActivityViewController extends Controller
 {
     private $busca;
     private $participantes;
-    private $participando = false;
+    private $participando;
     public function show($slug){
 
         $usuarioAtivo = \Auth::id();
@@ -56,7 +56,7 @@ class ActivityViewController extends Controller
         }else{
             session()->flash('message','Você ja está participando dessa atividade.');
         }
-        return redirect('/dashboard');
+        return redirect()->route('activity.index');
     }
     public function quitActivity($id){
         $usuarioAtivo = \Auth::id();
@@ -69,7 +69,7 @@ class ActivityViewController extends Controller
         }else{
             session()->flash('message','Você não está na lista');
         }
-        return redirect('/dashboard');
+        return redirect()->route('activity.index');
     }
     public function checkIfExists($user_id,$activity_id){
         return DB::table('activity_user')
