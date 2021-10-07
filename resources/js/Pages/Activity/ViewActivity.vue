@@ -78,8 +78,12 @@
                                     <i class="far fa-address-book text-indigo-400"></i>
                                     Participantes atuais
                                 </dt>
+                               <dt v-if="participantes < 1" class="text-sm font-medium text-gray-500">
+                                   <i class="far fa-folder-open"></i>
+                                   Sem participantes atualmente
+                               </dt>
 
-                                <ol class="list-none md:list-decimal xs:ml-6 md:ml-4">
+                                <ol v-else class="list-none md:list-decimal xs:ml-6 md:ml-4">
                                     <li v-for="participante in participantes">
                                         {{participante.name}}
                                     </li>
