@@ -23,9 +23,14 @@
                 <slot name="usuario"></slot>
             </p>
             <div class="divider"></div>
-            <div class="form-control">
-                <!--<p><i class="fas fa-paperclip"></i> <input type="text" class="input input-bordered w-full" readonly :value="route('view.activity',['slug' => conferir])"></p>
-            !--></div>
+              <jet-label for="link">Link</jet-label>
+                <jet-input
+                    id="link"
+                    type="text"
+                    class="mt-1 block w-full text-sm"
+                    :value="route('activity.show', { slug: this.slug })"
+                />
+
             <div class="justify-end card-actions">
                 <Link class="btn btn-outline btn-accent" :href="route('activity.show', { slug: this.slug })">
                     <span><i class="fas fa-info-circle"></i> Mais informações</span>
@@ -37,11 +42,13 @@
 </template>
 
 <script>
+import JetLabel from '../Jetstream/Label';
+import JetInput from '../Jetstream/Input';
 import {Link} from '@inertiajs/inertia-vue3';
 export default {
     name: "CardActivity",
     components:{
-        Link
+        Link, JetInput,JetLabel
     },
     props:['tipo','id','slug'],
     computed:{
@@ -68,7 +75,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-
-</style>

@@ -24,8 +24,6 @@ Route::get('/', function () {
     ]);
 });
 
-    //TODO Criar rota resource para activity
-
 Route::middleware(['auth:sanctum'])->group(function (){
     Route::resource('activity',\App\Http\Controllers\ActivityController::class)->except(['show']);
     Route::get('/activity/view/{slug}',[\App\Http\Controllers\ActivityViewController::class,'show'])->name('activity.show');
