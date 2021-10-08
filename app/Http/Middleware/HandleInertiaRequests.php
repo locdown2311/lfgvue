@@ -19,7 +19,7 @@ class HandleInertiaRequests extends Middleware
      * Determines the current asset version.
      *
      * @see https://inertiajs.com/asset-versioning
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return string|null
      */
     public function version(Request $request)
@@ -31,11 +31,12 @@ class HandleInertiaRequests extends Middleware
      * Defines the props that are shared by default.
      *
      * @see https://inertiajs.com/shared-data
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function share(Request $request)
     {
+        $authUser = $request->user();
         return array_merge(parent::share($request), [
             'flash' => [
                 'csrf_token' => csrf_token(),
@@ -47,6 +48,25 @@ class HandleInertiaRequests extends Middleware
                         $request->user()->only('id', 'name', 'email') : null;
                 }
             ],
+            'permission' => function () use ($authUser) {
+                if (!$authUser) return;
+
+                return [
+                    'category' => [
+                        'create' => $authUser->hasRole('admin'),
+                        'edit' => $authUser->hasRole('admin'),
+                        'delete' => $authUser->hasRole('admin'),
+                    ],
+                    'activity' => [
+                        'create' => $authUser->hasAnyRole('admin','user'),
+                        'edit' => $authUser->hasAnyRole('admin','user'),
+                        'delete' => $authUser->hasAnyRole('admin','user'),
+                        'join' => $authUser->hasAnyRole('admin','user')
+
+                    ],
+                ];
+            }
         ]);
+        //dd($teste);
     }
 }

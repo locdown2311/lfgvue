@@ -10,8 +10,10 @@ class Activity extends Model
     use HasFactory;
 
     protected $fillable = ['user_id','category_id','horario','qtd_jogadores','observacao'];
-    //protected $softDelete = true;
 
+    protected $casts = [
+        'horario' => 'datetime:d/m h:i',
+    ];
     public function user()
     {
         return $this->belongsTo(User::class);

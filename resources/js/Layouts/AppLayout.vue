@@ -25,6 +25,10 @@
                                 <jet-nav-link :href="route('activity.create')" :active="route().current('activity.create')">
                                     My Activities
                                 </jet-nav-link>
+                                <jet-nav-link v-if="$page.props.permission.category.create" :href="route('category.index')" :active="route().current('category.index') ">
+                                    Manage Categories
+                                </jet-nav-link>
+
                             </div>
                         </div>
 
@@ -150,6 +154,9 @@
                         </jet-responsive-nav-link>
                         <jet-responsive-nav-link :href="route('activity.create')" :active="route().current('activity.create')">
                             My Activities
+                        </jet-responsive-nav-link>
+                        <jet-responsive-nav-link :href="route('category.index')" :active="route().current('category.index')">
+                            Manage Categories
                         </jet-responsive-nav-link>
                     </div>
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="card bordered bg-white">
+    <div class="card bordered border-gray-200 bg-white shadow-md">
         <figure>
             <img :src=getImage>
         </figure>
@@ -32,7 +32,7 @@
                 />
 
             <div class="justify-end card-actions">
-                <Link class="btn btn-outline btn-accent" :href="route('activity.show', { slug: this.slug })">
+                <Link :class="$page.props.permission.activity.join ? 'btn btn-outline btn-accent' : 'btn btn-disabled'" :href="route('activity.show', { slug: this.slug })">
                     <span><i class="fas fa-info-circle"></i> Mais informações</span>
                 </Link>
             </div>

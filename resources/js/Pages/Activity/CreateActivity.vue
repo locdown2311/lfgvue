@@ -12,7 +12,8 @@
                         <InfoAlert/>
                     </div>
                     <button @click="openModal"
-                            class="my-4 inline-flex justify-center w-full btn btn-outline btn-primary">
+                            :class="$page.props.permission.activity.create ? 'my-4 inline-flex w-full btn btn-outline btn-primary'
+                            : 'my-4 inline-flex w-full btn btn-disabled'">
                         Iniciar atividade
                     </button>
                 </div>
@@ -74,8 +75,8 @@
                 </div>
             </div>
         </div>
-        <div class="py-5">
-            <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
+        <div v-show="atividades.length > 0" class="py-5">
+            <div class="xs:max-w-1xl sm:max-w-2xl md:max-w-5xl lg:max-w-6xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white shadow-xl sm:rounded-lg px-4 py-4">
                     <ListUserActivity :atividades="atividades"></ListUserActivity>
                 </div>

@@ -6,7 +6,6 @@ use App\Http\Requests\StoreActivityRequest;
 use App\Http\Requests\UpdateActivityRequest;
 use App\Models\Activity;
 use App\Models\Category;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 
@@ -82,6 +81,7 @@ class ActivityController extends Controller
         $dados->observacao = $valido['observacao'];
         $dados->category()->associate($valido['categoria_id']);
         $dados->save();
+
         session()->flash('message', 'Tarefa cadastrada.');
         return redirect()->route('activity.index');
     }
