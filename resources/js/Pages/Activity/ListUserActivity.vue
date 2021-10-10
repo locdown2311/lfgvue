@@ -8,7 +8,7 @@
                 <th class="px-4 py-2">Horário</th>
                 <th class="px-4 py-2 w-20">Qtd</th>
                 <th class="px-4 py-2 w-30">Obs</th>
-                <th class="px-4 py-2">Ações</th>
+                <th class="px-4 py-2 w-50">Ações</th>
             </tr>
             </thead>
             <tbody>
@@ -19,9 +19,12 @@
                     <td class="border px-4 py-2 text-center">{{ atividade.qtd_jogadores }}</td>
                     <td class="border px-4 py-2 text-center truncate ...">{{ atividade.observacao }}</td>
                     <td class="border px-4 py-2 text-center">
-                        <Link :href="route('activity.edit', { id: atividade.id })" class="btn btn-outline btn-accent">
+                        <Link :href="route('activity.edit', { id: atividade.id })" class="btn btn-sm btn-outline btn-accent mr-1">
                             Editar
                         </Link>
+                        <button @click="deleteAct(atividade.id)" class="btn btn-sm btn-error">
+                            Deletar
+                        </button>
                     </td>
                 </tr>
             </tbody>
@@ -36,12 +39,25 @@
 <script>
 import {Link} from "@inertiajs/inertia-vue3";
 import JetPagination from "../../Components/Pagination";
+import { Inertia } from '@inertiajs/inertia'
+
 export default {
     name: "ListUserActivity",
     props:['atividades'],
     components:{
         Link,
         JetPagination,
+    },
+    setup(props){
+        const deleteAct = (actId) => {
+            const result = confirm("Tem certeza?");
+            if (result) {
+                Inertia.delete(route("activity.destroy", actId), {
+                    preserveScroll: true,
+                });
+            }
+        };
+        return {deleteAct};
     }
 }
 </script>

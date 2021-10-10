@@ -125,10 +125,14 @@ class ActivityController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Activity  $activity
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Activity $activity)
     {
-        //
+        abort_unless($activity->user_id === \Auth::id(),403);
+        $activity->deleteOrFail();
+        session()->flash('message', 'Atividade deletada.');
+        return redirect()->route('activity.index');
+
     }
 }

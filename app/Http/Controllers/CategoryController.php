@@ -83,10 +83,14 @@ class CategoryController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Category $category)
     {
-        //
+        $name = $category->descricao;
+        $category->deleteOrFail();
+        session()->flash('message', 'Categoria '.$name.' deletada.');
+        return redirect()->route('category.index');
+
     }
 }

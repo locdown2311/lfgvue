@@ -38,9 +38,12 @@
                                 <td class="border px-4 py-2 text-center uppercase">{{ categoria.tipo }}</td>
                                 <td class="border px-4 py-2 text-center">{{ categoria.descricao }}</td>
                                 <td class="border px-4 py-2 text-center">
-                                    <Link :href="route('category.edit', { id: categoria.id })" class="btn btn-outline btn-accent">
+                                    <Link :href="route('category.edit', { id: categoria.id })" class="btn btn-sm btn-outline btn-accent mr-1">
                                         Editar
                                     </Link>
+                                    <button @click="deleteCat(categoria.id)" class="btn btn-sm btn-error">
+                                        Deletar
+                                    </button>
                                 </td>
                             </tr>
                             </tbody>
@@ -61,6 +64,7 @@ import AppLayout from "../../Layouts/AppLayout";
 import {Link} from "@inertiajs/inertia-vue3";
 import JetPagination from "../../Components/Pagination";
 import InfoAlert from "../../Components/InfoAlert";
+import {Inertia} from "@inertiajs/inertia";
 export default {
     name: "IndexCategory",
     components: {
@@ -72,5 +76,16 @@ export default {
     props:{
         categorias: Object
     },
+    setup(props){
+        const deleteCat = (catId) => {
+            const result = confirm("Tem certeza?");
+            if (result) {
+                Inertia.delete(route("category.destroy", catId), {
+                    preserveScroll: true,
+                });
+            }
+        };
+        return{deleteCat};
+    }
 }
 </script>
