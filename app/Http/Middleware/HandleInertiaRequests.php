@@ -61,8 +61,8 @@ class HandleInertiaRequests extends Middleware
                         'create' => $authUser->hasAnyRole('admin','user'),
                         'edit' => $authUser->hasAnyRole('admin','user'),
                         'delete' => $authUser->hasAnyRole('admin','user'),
-                        'join' => $authUser->hasAnyRole('admin','user')
-
+                        'view' => $authUser->hasAnyRole('admin','user'),
+                        'join' => $authUser->hasAnyRole('admin','user'),
                     ],
                 ];
             }

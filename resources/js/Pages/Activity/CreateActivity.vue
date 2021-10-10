@@ -11,7 +11,7 @@
                     <div>
                         <InfoAlert/>
                     </div>
-                    <button @click="openModal"
+                    <button @click="toogleModal()"
                             :class="$page.props.permission.activity.create ? 'my-4 inline-flex w-full btn btn-outline btn-primary'
                             : 'my-4 inline-flex w-full btn btn-disabled'">
                         Iniciar atividade
@@ -19,7 +19,7 @@
                 </div>
             </div>
         </div>
-        <div v-show="isOpen">
+        <div v-show="this.isOpen">
             <div class="modal modal-open">
                 <div class="modal-box">
                     <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
@@ -28,7 +28,7 @@
                                 <label class="block text-gray-700 text-sm font-bold mb-2">Atividade desejada</label>
                                 <select id="categoriaId" v-model="form.categoria_id" required>
                                     <option value="">Escolha a atividade desejada</option>
-                                    <option v-for="(categoria) in categorias"  :key="categoria.id" :value="categoria.id">
+                                    <option v-for="(categoria) in categorias" :key="categoria.id" :value="categoria.id">
                                         {{ categoria.descricao }}
                                     </option>
                                 </select>
@@ -67,8 +67,9 @@
 
                             </div>
                             <div class="flex flex-row modal-action">
-                                <button type="submit" class="btn btn-success" :disabled="form.processing">Submit</button>
-                                <button @click="closeModal" class="btn">Fechar</button>
+                                <button type="submit" class="btn btn-success" :disabled="form.processing">Submit
+                                </button>
+                                <button @click="$emit.close()" class="btn">Fechar</button>
                             </div>
                         </form>
                     </div>
@@ -91,43 +92,36 @@
 import AppLayout from "../../Layouts/AppLayout";
 import Modal from "../../Jetstream/Modal";
 import InfoAlert from "../../Components/InfoAlert";
-import { useForm } from '@inertiajs/inertia-vue3'
-import { usePage } from '@inertiajs/inertia-vue3';
+import {ref} from "vue";
+import {useForm} from '@inertiajs/inertia-vue3'
+import {usePage} from '@inertiajs/inertia-vue3';
 import ListUserActivity from "./ListUserActivity";
 
 export default {
     name: "CreateActivity",
     components: {ListUserActivity, Modal, AppLayout, InfoAlert},
-    props:{
+    props: {
         atividades: Object,
         categorias: Object,
         errors: Object
     },
-    setup () {
-        const form = useForm({
-            categoria_id: null,
-            horario_atv:null,
-            qtd_jogadores:null,
-            observacao:null,
-            _token: usePage().props.value.csrf_token
-        })
+    setup(props) {
+        let isOpen = ref(false);
+        let editMode = ref(false);
 
-        return { form }
-    },
-    data() {
-        return {
-            isOpen: false,
-            editMode: false,
+        function toogleModal() {
+            console.log(isOpen)
+            isOpen.value = !isOpen.value
         }
-    },
-    computed: {
-        openModal: function () {
-            this.isOpen = true;
-        },
-        closeModal: function () {
-            this.isOpen = false;
-        },
-    },
+        const form = useForm({
+                categoria_id: null,
+                horario_atv: null,
+                qtd_jogadores: null,
+                observacao: null,
+                _token: usePage().props.value.csrf_token });
+
+        return {form, isOpen, editMode, toogleModal};
+    }
 }
 </script>
 

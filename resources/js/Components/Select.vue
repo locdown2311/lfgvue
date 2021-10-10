@@ -9,8 +9,8 @@
             :key="key"
             :value="data.value"
             :selected="data.value === modelValue"
-        >
-            {{ data.name }}
+        >{{data.tipo}}
+
         </option>
     </select>
 </template>

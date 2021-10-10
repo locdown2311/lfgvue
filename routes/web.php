@@ -27,7 +27,7 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum'])->group(function (){
     Route::resource('activity',\App\Http\Controllers\ActivityController::class)->except(['show']);
 
-    Route::group(['middleware' => ['role: user']], function () {
+    Route::group(['middleware' => ['role:user|admin']], function () {
         Route::get('/activity/view/{slug}',[\App\Http\Controllers\ActivityViewController::class,'show'])->name('activity.show');
         Route::post('/activity/join/{id}',[\App\Http\Controllers\ActivityViewController::class,'joinActivity'])->name('activity.join');
         Route::post('/activity/quit/{id}',[\App\Http\Controllers\ActivityViewController::class,'quitActivity'])->name('activity.quit');

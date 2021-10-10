@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoryUpdateRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -52,11 +53,13 @@ class CategoryController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
     public function edit(Category $category)
     {
-        //
+        return Inertia::render('Category/EditCategory',[
+            'categoria' => $category
+        ]);
     }
 
     /**
@@ -64,11 +67,16 @@ class CategoryController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryUpdateRequest $request, Category $category)
     {
-        //
+        $valido = $request->validated();
+        $category->tipo = $valido['tipo'];
+        $category->descricao = $valido['descricao'];
+        $category->save();
+        session()->flash('message', 'Categoria editada.');
+        return redirect()->route('category.index');
     }
 
     /**

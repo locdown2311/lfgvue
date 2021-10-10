@@ -60,18 +60,17 @@
 import AppLayout from "../../Layouts/AppLayout";
 import {Link} from "@inertiajs/inertia-vue3";
 import JetPagination from "../../Components/Pagination";
+import InfoAlert from "../../Components/InfoAlert";
 export default {
     name: "IndexCategory",
     components: {
         AppLayout,
         Link,
         JetPagination,
+        InfoAlert
     },
     props:{
         categorias: Object
     },
-    setup(props){
-
-    }
 }
 </script>
