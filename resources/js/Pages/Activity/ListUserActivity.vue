@@ -20,10 +20,10 @@
                     <td class="border px-4 py-2 text-center truncate ...">{{ atividade.observacao }}</td>
                     <td class="border px-4 py-2 text-center">
                         <Link :href="route('activity.edit', { id: atividade.id })" class="btn btn-sm btn-outline btn-accent mr-1">
-                            Editar
+                            {{ $t('edit') }}
                         </Link>
                         <button @click="deleteAct(atividade.id)" class="btn btn-sm btn-error">
-                            Deletar
+                            {{ $t('delete')}}
                         </button>
                     </td>
                 </tr>

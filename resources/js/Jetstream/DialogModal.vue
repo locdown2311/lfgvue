@@ -14,7 +14,7 @@
 
         <div class="px-6 py-4 bg-gray-100 text-right">
             <slot name="footer"></slot>
-            <button class="btn btn-sm btn-secundary" @click="$emit('close')">Close</button>
+            <button class="btn btn-sm btn-secundary" @click="$emit('close')">{{$t('activities_create_modal_close')}}</button>
         </div>
     </modal>
 </template>

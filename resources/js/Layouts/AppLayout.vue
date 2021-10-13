@@ -20,13 +20,13 @@
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <jet-nav-link :href="route('activity.index')" :active="route().current('activity.index')">
-                                    Dashboard
+                                    {{ $t('dashboard') }}
                                 </jet-nav-link>
                                 <jet-nav-link :href="route('activity.create')" :active="route().current('activity.create')">
-                                    My Activities
+                                    {{ $t('activities_nav') }}
                                 </jet-nav-link>
                                 <jet-nav-link v-if="$page.props.permission.category.create" :href="route('category.index')" :active="route().current('category.index') ">
-                                    Manage Categories
+                                    {{ $t('categories_nav') }}
                                 </jet-nav-link>
 
                             </div>
@@ -150,13 +150,13 @@
                 <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
                         <jet-responsive-nav-link :href="route('activity.index')" :active="route().current('activity.index')">
-                            Dashboard
+                            {{ $t('dashboard') }}
                         </jet-responsive-nav-link>
                         <jet-responsive-nav-link :href="route('activity.create')" :active="route().current('activity.create')">
-                            My Activities
+                            {{ $t('activities_nav') }}
                         </jet-responsive-nav-link>
                         <jet-responsive-nav-link :href="route('category.index')" :active="route().current('category.index')">
-                            Manage Categories
+                            {{ $t('categories_nav') }}
                         </jet-responsive-nav-link>
                     </div>
 

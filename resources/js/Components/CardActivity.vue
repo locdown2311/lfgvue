@@ -12,14 +12,14 @@
             </h2>
             <p><slot name="observacao"></slot></p>
             <div class="divider"></div>
-            <span class="text-sm font-semibold">Jogadores necessários:
+            <span class="text-sm font-semibold">{{ $t('activities_card_players') }} :
                 <slot name="jogadores"></slot> </span>
             <p>
-                <i class="far fa-clock fa-fw mr-2 text-gray-900"></i>Horário previsto:
+                <i class="far fa-clock fa-fw mr-2 text-gray-900"></i>{{ $t('activities_card_datetime') }} :
                 <slot name="horario"></slot>
             </p>
             <p>
-                <i class="far fa-address-card fa-fw text-gray-900 mr-2"></i>Criado por:
+                <i class="far fa-address-card fa-fw text-gray-900 mr-2"></i>{{ $t('activities_card_createdby') }} :
                 <slot name="usuario"></slot>
             </p>
             <div class="divider"></div>
@@ -33,7 +33,7 @@
 
             <div class="justify-end card-actions">
                 <Link :class="$page.props.permission.activity.join ? 'btn btn-outline btn-accent' : 'btn btn-disabled'" :href="route('activity.show', { slug: this.slug })">
-                    <span><i class="fas fa-info-circle"></i> Mais informações</span>
+                    <span><i class="fas fa-info-circle"></i> {{ $t('activities_card_moreinfo') }} </span>
                 </Link>
             </div>
         </div>

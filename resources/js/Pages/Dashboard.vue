@@ -1,8 +1,8 @@
 <template>
-    <app-layout title="Dashboard">
+    <app-layout :title="$t('dashboard')">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Dashboard
+                {{$t('dashboard')}}
             </h2>
         </template>
 
@@ -17,6 +17,8 @@
                         <template #corpo>
                             <p>Comece procurando uma atividade existente abaixo.</p>
                             <p>Caso não encontre, crie uma.</p>
+                           <!-- <a href="/bungie/auth" class="btn btn-primary">Login</a> -->
+
                         </template>
                     </ContainerCard>
                     <div>
@@ -30,7 +32,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div v-for="info in dados">
                     <div class="m-6 indicator">
-                        <div class="indicator-item badge badge-primary">NOVA</div>
+                        <div class="indicator-item badge badge-primary">{{$t('activities_card_badge')}}</div>
                         <CardActivity
                             :id = info.id
                             :slug = info.slug

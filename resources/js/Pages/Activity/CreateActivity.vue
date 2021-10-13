@@ -1,8 +1,8 @@
 <template>
-    <app-layout title="Create Activity">
+    <app-layout :title="$t('activities_create')">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Create Activity
+                {{$t('activities_create')}}
             </h2>
         </template>
         <div class="py-12">
@@ -14,7 +14,7 @@
                     <button @click="toogleModal()"
                             :class="$page.props.permission.activity.create ? 'my-4 inline-flex w-full btn btn-outline btn-primary'
                             : 'my-4 inline-flex w-full btn btn-disabled'">
-                        Iniciar atividade
+                        {{$t('activities_create_start')}}
                     </button>
                 </div>
             </div>
@@ -78,13 +78,13 @@
         </div> -->
         <DialogModal :show="isOpen" @close="toogleModal()">
             <template #title>
-                Creating activity..
+                {{$t('activities_create_modal_title')}}
             </template>
             <template #content>
                 <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2">Atividade desejada</label>
+                    <label class="block text-gray-700 text-sm font-bold mb-2">{{$t('activities_create_modal_chosen')}}:</label>
                     <select id="categoriaId" v-model="form.categoria_id" required>
-                        <option value="">Escolha a atividade desejada</option>
+                        <option value="">{{$t('activities_create_modal_select')}}</option>
                         <option v-for="(categoria) in categorias" :key="categoria.id" :value="categoria.id">
                             {{ categoria.descricao }}
                         </option>
@@ -92,17 +92,16 @@
                     <div v-if="errors.categoria_id">{{ errors.categoria_id }}</div>
                     <div class="mb-4">
                         <label for="horaAtividade"
-                               class="block text-gray-700 text-sm font-bold mb-2">Horário da Atividade:</label>
+                               class="block text-gray-700 text-sm font-bold mb-2">{{$t('activities_card_datetime')}}:</label>
                         <input type="datetime-local"
                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                id="horaAtividade" v-model="form.horario_atv" required>
                         <div v-if="errors.horario_atv">{{ errors.horario_atv }}</div>
                     </div>
                     <div class="mb-4">
-                        <label class="block text-gray-700 text-sm font-bold mb-2">Número de
-                            jogadores:</label>
+                        <label class="block text-gray-700 text-sm font-bold mb-2">{{$t('activities_card_players')}}:</label>
                         <select id="qtdJogadores" v-model="form.qtd_jogadores" required>
-                            <option value="">Defina o número de jogadores totais</option>
+                            <option value="">{{$t('activities_create_modal_player_select')}}</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -113,17 +112,18 @@
                         <div v-if="errors.qtd_jogadores">{{ errors.qtd_jogadores }}</div>
                     </div>
                     <div class="mb-4">
-                        <label class="block text-gray-700 text-sm font-bold mb-2">Observações:</label>
+                        <label class="block text-gray-700 text-sm font-bold mb-2">{{ $t('activities_create_modal_observation') }}:</label>
                         <textarea
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             id="obsAtividade" v-model="form.observacao"
-                            placeholder="Favor usar tal tipo de arma | Ter paciência"></textarea>
+                            :placeholder="$t('activities_create_modal_observation_placeholder') "></textarea>
                         <div v-if="errors.observacao">{{ errors.observacao }}</div>
                     </div>
                 </div>
             </template>
             <template #footer>
-                <button type="submit" @click="submit()" class="btn btn-sm btn-success mr-1" :disabled="form.processing">Submit
+                <button type="submit" @click="submit()" class="btn btn-sm btn-success mr-1" :disabled="form.processing">
+                    {{$t('submit')}}
                 </button>
             </template>
         </DialogModal>
@@ -159,8 +159,6 @@ export default {
     },
     setup(props) {
         let isOpen = ref(false);
-        let editMode = ref(false);
-
         function toogleModal() {
             isOpen.value = !isOpen.value
         }
@@ -174,7 +172,7 @@ export default {
         function submit(){
             form.post('/activity/');
         }
-        return {form, isOpen, editMode, toogleModal, submit};
+        return {form, isOpen, toogleModal, submit};
     }
 }
 </script>

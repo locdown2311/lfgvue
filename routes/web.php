@@ -23,6 +23,7 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+Route::get('/bungie/auth',[\App\Http\Controllers\BungieController::class,'login']);
 
 Route::middleware(['auth:sanctum'])->group(function (){
     Route::resource('activity',\App\Http\Controllers\ActivityController::class)->except(['show']);

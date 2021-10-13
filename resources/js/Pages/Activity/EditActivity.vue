@@ -1,20 +1,20 @@
 <template>
-    <app-layout title="Edit Activity">
+    <app-layout :title="$t('activities_edit')">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Edit Activity
+                {{$t('activities_edit')}}
             </h2>
         </template>
         <div class="py-12">
             <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white shadow-xl sm:rounded-lg px-4 py-4">
                     <jet-form-section @submitted="updatePost">
-                        <template #title> Update Activity "{{atividade.slug}}" </template>
-                        <template #description> Of type: {{ descricao }}</template>
+                        <template #title> {{$t('activities_edit_title')}} "{{atividade.slug}}" </template>
+                        <template #description> {{$t('activities_edit_type')}}: {{ descricao }}</template>
                         <template #form>
                             <!-- Title -->
                             <div class="col-span-6 sm:col-span-4">
-                                <jet-label for="horario" value="Horário" />
+                                <jet-label for="horario" :value="$t('activities_card_datetime')" />
                                 <jet-input
                                     id="horario"
                                     type="datetime-local"
@@ -25,9 +25,9 @@
                                 <jet-input-error :message="form.errors.horario" class="mt-2" />
                             </div>
                             <div class="col-span-6 sm:col-span-4">
-                                <jet-label for="jogadores" value="Número de Jogadores" />
+                                <jet-label for="jogadores" :value="$t('activities_card_players')" />
                                 <select id="qtdJogadores" v-model="form.qtd_jogadores">
-                                    <option value="">Defina o número de jogadores totais</option>
+                                    <option value="">{{$t('activities_create_modal_player_select')}}</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -40,7 +40,7 @@
 
                             <!-- Content -->
                             <div class="col-span-6 sm:col-span-4">
-                                <jet-label for="observacoes" value="Observações" />
+                                <jet-label for="observacoes" :value="$t('activities_create_modal_observation')" />
                                 <textarea
                                     class="mt-1 block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                                     v-model="form.observacao"
@@ -52,14 +52,14 @@
 
                         <template #actions>
                             <jet-action-message :on="form.recentlySuccessful" class="mr-3">
-                                Saved.
+                                {{$t('activities_edit_saved')}}.
                             </jet-action-message>
 
                             <jet-button
                                 :class="{ 'opacity-25': form.processing }"
                                 :disabled="form.processing"
                             >
-                                Save
+                                {{$t('activities_create_modal_submit')}}
                             </jet-button>
                         </template>
                     </jet-form-section>
