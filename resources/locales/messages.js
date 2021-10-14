@@ -44,6 +44,14 @@ const messages = {
         activities_view_actions:"Ações",
         activities_view_:"",
 
+        categories_create:"Criar categoria",
+        categories_create_btn:"Nova categoria",
+        categories_intro:"Categorias presentes no banco",
+        categories_create_type:"Tipo",
+        categories_create_desc:"Descrição",
+        categories_create_actions:"Ações",
+
+
         submit:"Salvar",
         edit:"Editar",
         delete:"Deletar",

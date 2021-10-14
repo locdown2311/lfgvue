@@ -167,7 +167,8 @@ export default {
                 horario_atv: null,
                 qtd_jogadores: null,
                 observacao: null,
-                _token: usePage().props.value.csrf_token });
+                _token: usePage().props.value.csrf_token
+        });
 
         function submit(){
             form.post('/activity/');
