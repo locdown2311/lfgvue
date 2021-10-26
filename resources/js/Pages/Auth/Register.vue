@@ -63,7 +63,7 @@
     import JetCheckbox from '@/Jetstream/Checkbox.vue'
     import JetLabel from '@/Jetstream/Label.vue'
     import JetValidationErrors from '@/Jetstream/ValidationErrors.vue'
-    import { Head, Link } from '@inertiajs/inertia-vue3';
+    import {Head, Link, usePage} from '@inertiajs/inertia-vue3';
 
     export default defineComponent({
         components: {
@@ -86,6 +86,8 @@
                     password: '',
                     password_confirmation: '',
                     terms: false,
+                    _token: usePage().props.value.csrf_token
+
                 })
             }
         },

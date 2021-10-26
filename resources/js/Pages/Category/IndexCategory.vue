@@ -23,7 +23,8 @@
                 <div class="bg-white shadow-xl sm:rounded-lg px-4 py-4">
                     <div class="flex justify-end itens-center">
                         <button @click="toogleModal()" class="btn btn-sm btn-primary">
-                            {{$t('categories_create_btn')}}</button>
+                            {{$t('categories_create_btn')}}
+                        </button>
                     </div>
                     <DialogModal :show="isOpen" @close="toogleModal()">
                         <template #title>
@@ -44,17 +45,19 @@
                                     <div v-if="errors.tipo">{{ errors.tipo }}</div>
                                 </div>
                                 <div class="mb-4">
-                                    <label class="block text-gray-700 text-sm font-bold mb-2">{{ $t('categories_create_desc') }}:</label>
+                                    <label class="block text-gray-700 text-sm font-bold mb-2">{{
+                                        $t('categories_create_desc') }}:</label>
                                     <textarea
                                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         id="obsAtividade" v-model="form.descricao"
-                                        ></textarea>
+                                    ></textarea>
                                     <div v-if="errors.descricao">{{ errors.descricao }}</div>
                                 </div>
                             </div>
                         </template>
                         <template #footer>
-                            <button type="submit" @click="submit()" class="btn btn-sm btn-success mr-1" :disabled="form.processing">
+                            <button type="submit" @click="submit()" class="btn btn-sm btn-success mr-1"
+                                    :disabled="form.processing">
                                 {{$t('submit')}}
                             </button>
                         </template>
@@ -77,7 +80,8 @@
                                 <td class="border px-4 py-2 text-center uppercase">{{ categoria.tipo }}</td>
                                 <td class="border px-4 py-2 text-center">{{ categoria.descricao }}</td>
                                 <td class="border px-4 py-2 text-center">
-                                    <Link :href="route('category.edit', { id: categoria.id })" class="btn btn-sm btn-outline btn-accent mr-1">
+                                    <Link :href="route('category.edit', { id: categoria.id })"
+                                          class="btn btn-sm btn-outline btn-accent mr-1">
                                         {{ $t('edit') }}
                                     </Link>
                                     <button @click="deleteCat(categoria.id)" class="btn btn-sm btn-error">
@@ -88,9 +92,8 @@
                             </tbody>
                         </table>
                         <div class="flex justify-end">
-                            <jet-pagination class="m-5" :links="categorias.links" />
+                            <jet-pagination class="m-5" :links="categorias.links"/>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -107,6 +110,7 @@ import {Inertia} from "@inertiajs/inertia";
 import DialogModal from "../../Jetstream/DialogModal";
 import JetInput from '@/Jetstream/Input.vue';
 import {ref} from 'vue'
+
 export default {
     name: "IndexCategory",
     components: {
@@ -117,25 +121,27 @@ export default {
         DialogModal,
         JetInput
     },
-    props:{
+    props: {
         categorias: Object,
         errors: Object
     },
-    setup(props){
+    setup(props) {
         let isOpen = ref(false)
-        const toogleModal = function (){
+        const toogleModal = function () {
             isOpen.value = !isOpen.value;
         }
         const form = useForm({
             tipo: null,
             descricao: null,
-            _token: usePage().props.value.csrf_token });
+            _token: usePage().props.value.csrf_token
+        });
 
-        function submit(){
+        function submit() {
             form.post('/category/');
             form.reset();
             toogleModal();
         }
+
         const deleteCat = (catId) => {
             const result = confirm("Tem certeza?");
             if (result) {
@@ -144,7 +150,7 @@ export default {
                 });
             }
         };
-        return{deleteCat, toogleModal,form, submit,isOpen};
+        return {deleteCat, toogleModal, form, submit, isOpen};
     }
 }
 </script>

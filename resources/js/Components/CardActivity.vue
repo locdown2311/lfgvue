@@ -1,7 +1,11 @@
 <template>
     <div class="card bordered border-gray-200 bg-white shadow-md">
         <figure>
-            <img :src=getImage>
+
+            <Icon v-if="tipo === 'pvp'" icon="mdi:bow-arrow" width="135" height="135"></Icon>
+            <Icon v-else-if="tipo === 'pve'" icon="akar-icons:people-group" width="135" height="135"></Icon>
+            <Icon v-else-if="tipo === 'raid'" icon="healthicons:group-discussion-meeting-outline" width="135" height="135"></Icon>
+            <Icon v-else icon="ant-design:question-circle-outlined" width="135" height="135"></Icon>
         </figure>
         <div class="card-body">
             <h2 class="card-title">
@@ -45,29 +49,30 @@
 import JetLabel from '../Jetstream/Label';
 import JetInput from '../Jetstream/Input';
 import {Link} from '@inertiajs/inertia-vue3';
+import { Icon } from '@iconify/vue';
 export default {
     name: "CardActivity",
     components:{
-        Link, JetInput,JetLabel
+        Link, JetInput,JetLabel,Icon
     },
     props:['tipo','id','slug'],
     computed:{
         getImage(){
             switch(this.tipo) {
                 case 'raid': {
-                    return "https://d1lss44hh2trtw.cloudfront.net/assets/article/2020/10/21/destiny-2-beyond-light-raid-release-date_feature.jpg"
+                    return "healthicons:group-discussion-meeting-outline"
                     break;
                 }
                 case 'pvp': {
-                    return "https://attackofthefanboy.com/wp-content/uploads/2015/02/destiny-crucible-aotf-760x428.jpg"
+                    return "mdi:bow-arrow"
                     break;
                 }
                 case 'pve': {
-                    return "https://www.windowscentral.com/sites/wpcentral.com/files/styles/xlarge/public/field/image/2021/07/glassway-grandmaster-nf-hero.jpg"
+                    return "akar-icons:people-group"
                     break;
                 }
                 default: {
-                    return 'Algo deu errado'
+                    return 'ant-design:question-circle-outlined'
                     break;
                 }
             }
